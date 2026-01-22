@@ -59,16 +59,21 @@ exports.loginController = async (req, res) => {
 exports.addUserController = async (req, res) => {
     console.log("-------------Inside addUserController-------------");
 
-    const { name, email, phone, passwordHash, role, isActive, createdAt, updatedAt } = req.body;
+    const { name, email, phone, passwordHash, role, isActive} = req.body;
+
+    console.log(name, email, phone, passwordHash, role, isActive);
 
     try {
         const existingUser = await users.findOne({ email });
         if (existingUser) {
             res.status(409).json("The user already exists. Try with a different Email")
+            console.log("The user already exists. Try with a different Email");
         }
         else {
+            console.log("Creating new user");
+            
             const newUser = await users.create({
-                name, email, phone, passwordHash, role, isActive, createdAt, updatedAt
+                name, email, phone, passwordHash, role, isActive
             })
             res.status(200).json(newUser)
         }
@@ -82,6 +87,9 @@ exports.addUserController = async (req, res) => {
 // get all users
 exports.getAllUsersController = async (req, res) => {
     console.log("-------------Inside getAllUsersController-------------");
+    const loginUserMail = req.payload;
+    console.log(loginUserMail);
+    
     try {
         const allUsers = await users.find();
         res.status(200).json(allUsers)
@@ -92,7 +100,7 @@ exports.getAllUsersController = async (req, res) => {
 }
 
 // get user by id
-exports.getUSerByIdController = async (req, res) => {
+exports.getUserByIdController = async (req, res) => {
     console.log("-------------Inside getUSerByIdController-------------");
     const {id} = req.params
     try {
