@@ -113,14 +113,14 @@ exports.getUserByIdController = async (req, res) => {
 }
 
 // edit user
-exports.editUSerController = async (req, res) => {
+exports.editUserController = async (req, res) => {
     console.log("-------------Inside editUSerController-------------");
 
     const {id} = req.params
-    const { name, email, phone, passwordHash, role, isActive, createdAt, updatedAt } = req.body;
+    const { name, email, phone, passwordHash, role, isActive } = req.body;
     
     try {
-        const userDetails = await users.findByIdAndUpdate({_id:id},{name, email, phone, passwordHash, role, isActive, createdAt, updatedAt},{new : true});
+        const userDetails = await users.findByIdAndUpdate({_id:id},{ name, email, phone, passwordHash, role, isActive },{new : true});
         res.status(200).json(userDetails)
     } catch (err) {
         console.log(err);
@@ -129,7 +129,7 @@ exports.editUSerController = async (req, res) => {
 }
 
 // delete user
-exports.removeUSerController = async (req, res) => {
+exports.removeUserController = async (req, res) => {
     console.log("-------------Inside removeUSerController-------------");
     const {id} = req.params
     try {

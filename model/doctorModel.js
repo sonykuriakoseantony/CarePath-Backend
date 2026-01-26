@@ -6,7 +6,7 @@ const doctorSchema = mongoose.Schema({
         required : true
     },
     departmentId : {
-        type : ObjectId,
+        type : String,
         required : true
     },
     email : {
@@ -19,10 +19,6 @@ const doctorSchema = mongoose.Schema({
         required : true
     },
     specialization : {
-        type : String,
-        required : true
-    },
-    title : {
         type : String,
         required : true
     },

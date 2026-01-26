@@ -1,26 +1,26 @@
 const mongoose = require('mongoose');
 
-const symptomSchema = mongoose.Schema({
-    keywords : {
+const rulesSchema = mongoose.Schema({
+    symptomKeywords : {
         type : [],
         required : true
     },
     departmentId : {
-        type : ObjectId,
+        type : String,
         required : true
     },
-    weight : {
+    priority : {
         type : Number,
         required : true
     },
-    isActive : {
-        type : Boolean,
+    confidenceWeight : {
+        type : Number,
         required : true
     }
 },{
     timestamps : true
 })
 
-const symptoms = mongoose.model('symptoms', symptomSchema);
+const rules = mongoose.model('rules', rulesSchema);
 
-module.exports = symptoms;
+module.exports = rules;
