@@ -45,9 +45,9 @@ const symptomSchema = mongoose.Schema({
         default: ' '
     },
     suggestedDoctorId: {
-        type: String,
-        required: true,
-        default: ' '
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "doctors", // MUST match Doctor model name mongoose.model(MODEL_NAME, schema)
+        default: null
     },
     confidenceScore: {
         type: Number,

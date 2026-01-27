@@ -87,12 +87,15 @@ router.delete('/rule/:id/delete', adminMiddleware, ruleController.removeRuleCont
 
 //--------------Symptoms routes------------------
 //get all symptoms --> '/symptoms/all' --> GET request to get all symptoms from db
-router.get('/symptoms/all', symptomController.getAllSymptomsController)
+router.get('/symptoms/all', adminMiddleware, symptomController.getAllSymptomsController)
 
 router.get('/cases/all', jwtMiddleware, symptomController.getAllCasesController)
 
-//add rule --> '/symptom/add' --> POST request to add symptom to db
+//add symptom --> '/symptom/add' --> POST request to add symptom to db
 router.post('/symptom/add', jwtMiddleware, multerMiddleware.array('uploadImg', 3), symptomController.addSymptomController)
+
+//add symptom --> '/symptom/add' --> POST request to add symptom to db
+router.put('/symptom/:id/update', adminMiddleware, symptomController.updateSymptomController)
 
 
 
