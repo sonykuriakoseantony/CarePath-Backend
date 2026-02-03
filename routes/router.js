@@ -92,7 +92,7 @@ router.get('/symptoms/all', adminMiddleware, symptomController.getAllSymptomsCon
 router.get('/cases/all', jwtMiddleware, symptomController.getAllCasesController)
 
 //add symptom --> '/symptom/add' --> POST request to add symptom to db
-router.post('/symptom/add', jwtMiddleware, multerMiddleware.array('uploadImg', 3), symptomController.addSymptomController)
+router.post('/symptom/add', jwtMiddleware, multerMiddleware.array('medicalReports', 3), symptomController.addSymptomController)
 
 //add symptom --> '/symptom/add' --> POST request to add symptom to db
 router.put('/symptom/:id/update', adminMiddleware, symptomController.updateSymptomController)

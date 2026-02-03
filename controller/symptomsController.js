@@ -16,7 +16,7 @@ const sendApprovalMail = require('../config/sendApprovalMail');
 //     }
 // }
 
-// get all cases by patients by id
+// get all cases by admin by id
 exports.getAllSymptomsController = async (req, res) => {
     console.log("-------------Inside getAllSymptomsController-------------");
 
