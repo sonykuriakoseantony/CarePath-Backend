@@ -40,9 +40,9 @@ const symptomSchema = mongoose.Schema({
         default: "submitted"
     },
     suggestedDepartmentId: {
-        type: String,
-        required: true,
-        default: ' '
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "departments", // MUST match Department model name mongoose.model(MODEL_NAME, schema)
+        default: null
     },
     suggestedDoctorId: {
         type: mongoose.Schema.Types.ObjectId,

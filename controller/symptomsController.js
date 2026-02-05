@@ -113,7 +113,7 @@ exports.updateSymptomController = async (req, res) => {
           adminNotes,
         },
         { new: true }
-      ).populate("suggestedDoctorId"); // ✅ get doctor name
+      ).populate("suggestedDoctorId").populate("suggestedDepartmentId"); // ✅ get doctor name
 
     if (!updatedSymptom) {
       return res.status(404).json({ message: "Symptom not found" });
@@ -132,6 +132,7 @@ exports.updateSymptomController = async (req, res) => {
         caseId: updatedSymptom._id,
         doctorName:
           updatedSymptom.suggestedDoctorId?.name || "Assigned Doctor",
+        department:updatedSymptom.suggestedDepartmentId?.name || "Assigned Department"
       }).catch((err) => {
         console.error("Approval email failed:", err.message);
       });
