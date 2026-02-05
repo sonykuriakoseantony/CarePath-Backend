@@ -12,7 +12,7 @@ const sendApprovalMail = async ({
 
   await transporter.sendMail({
     from: `"CarePath" <${process.env.MAIL_USER}>`,
-    to : "sonykantony@gmail.com",
+    to,
     subject: "Your case has been approved",
     html: `
       <p>Hello ${patientName},</p>
