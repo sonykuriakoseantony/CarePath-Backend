@@ -1,6 +1,7 @@
 const symptom = require('../model/symptomsModel');
 const multerMiddleware = require('../middlewares/multerMiddleware');
 const sendApprovalMail = require('../config/sendApprovalMail');
+const sendCaseApprovedEmail = require('../config/sendResendMail');
 
 // get all symptoms
 // exports.getAllSymptomsController = async (req, res) => {
@@ -120,13 +121,13 @@ exports.updateSymptomController = async (req, res) => {
     }
 
     // ✅ Send response FIRST
-    res.status(200).json(updatedSymptom);
+    // res.status(200).json(updatedSymptom);
 
     // ✅ Send email AFTER response (non-blocking)
     if (status == "approved" && updatedSymptom.patientEmail) {
       console.log("Sending approval mail to:", updatedSymptom.patientEmail);
 
-      sendApprovalMail({
+      await sendCaseApprovedEmail({
         to: updatedSymptom.patientEmail,        // ✅ from DB
         patientName: updatedSymptom.patientName,
         caseId: updatedSymptom._id,
@@ -137,6 +138,12 @@ exports.updateSymptomController = async (req, res) => {
         console.error("Approval email failed:", err.message);
       });
     }
+
+    return res.status(200).json({
+      message: "Symptoms updated successfully",
+      data: updatedSymptom,
+    });
+
   } catch (err) {
     console.error(err);
     if (!res.headersSent) {

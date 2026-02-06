@@ -19,12 +19,12 @@ const transporter = nodemailer.createTransport({
   connectionTimeout: process.env.MAIL_CONNECTION_TIMEOUT ? parseInt(process.env.MAIL_CONNECTION_TIMEOUT, 10) : 10000,
 });
 
-transporter.verify((err, success) => {
-  if (err) {
-    console.error("Mailer connection failed:", err);
-  } else {
-    console.info("Mailer is ready to send messages");
-  }
-});
+// transporter.verify((err, success) => {
+//   if (err) {
+//     console.error("Mailer connection failed:", err);
+//   } else {
+//     console.info("Mailer is ready to send messages");
+//   }
+// });
 
 module.exports = transporter;
