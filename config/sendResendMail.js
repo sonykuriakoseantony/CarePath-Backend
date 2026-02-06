@@ -9,6 +9,8 @@ async function sendCaseApprovedEmail({
   doctorName,
   department,
 }) {
+    console.log("*******Sending mail using Resend api********");
+    
   return resend.emails.send({
     from: "CarePath <onboarding@resend.dev>",
     to: [to],

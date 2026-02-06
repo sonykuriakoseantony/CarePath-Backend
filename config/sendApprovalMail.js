@@ -7,7 +7,8 @@ const sendApprovalMail = async ({
   doctorName,
   department
 }) => {
-
+    console.log("Sending mail using gsmtp");
+    
     console.log(to, patientName, department, doctorName, process.env.MAIL_USER);
 
   await transporter.sendMail({
